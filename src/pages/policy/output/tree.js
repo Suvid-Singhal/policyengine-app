@@ -18,16 +18,16 @@ export const policyOutputs = {
   "laborSupplyImpact.byDecile.relative.total":
     "Labor supply impact by decile (relative)",
   "laborSupplyImpact.byDecile.relative.income":
-    "Labor supply impact by decile (relative)",
+    "Labor supply income effect impact by decile (relative)",
   "laborSupplyImpact.byDecile.relative.substitution":
-    "Labor supply impact by decile (relative)",
+    "Labor supply substitution effect impact by decile (relative)",
   "laborSupplyImpact.byDecile.absolute.total":
     "Labor supply impact by decile (absolute)",
   "laborSupplyImpact.byDecile.absolute.income":
-    "Labor supply impact by decile (absolute)",
+    "Labor supply income effect impact by decile (absolute)",
   "laborSupplyImpact.byDecile.absolute.substitution":
-    "Labor supply impact by decile (absolute)",
-  "laborSupplyImpact.hours": "Labor supply impact by hours worked",
+    "Labor supply substitution effect impact by decile (absolute)",
+  "laborSupplyImpact.hours": "Labor supply impact upon hours worked",
   "laborSupplyImpact.overall": "Overall labor supply impact",
   "povertyImpact.regular.byAge": "Regular poverty impact by age",
   "povertyImpact.regular.byRace": "Regular poverty impact by race",
@@ -40,11 +40,6 @@ export const policyOutputs = {
   "distributionalImpact.incomeDecile.average":
     "Distributional impact by income decile (average)",
   "budgetaryImpact.overall": "Overall budgetary impact",
-  laborSupplyImpact: "Labor supply impact (experimental)",
-  laborSupplyDecileRelativeImpact:
-    "Labor supply relative impact by decile (experimental)",
-  laborSupplyDecileAbsoluteImpact:
-    "Labor supply absolute impact by decile (experimental)",
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
 };
@@ -170,51 +165,57 @@ export function getPolicyOutputTree(countryId) {
               ? "Labour supply impact (experimental)"
               : "Labor supply impact (experimental)",
           children: [
-            {
-              name: "policyOutput.laborSupplyImpact.overall",
-              label: "Overall",
-            },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
               label: "Hours worked",
             },
             {
-              name: "policyOutput.laborSupplyImpact.byDecile",
-              label: "By decile",
+              name: "policyOutput.laborSupplyImpact.earnings",
+              label: "Earnings",
               children: [
                 {
-                  name: "policyOutput.laborSupplyImpact.byDecile.relative",
-                  label: "Relative",
-                  children: [
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.total",
-                      label: "Total",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.income",
-                      label: "Income effect",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.substitution",
-                      label: "Substitution effect",
-                    },
-                  ],
+                  name: "policyOutput.laborSupplyImpact.earnings.overall",
+                  label: "Overall",
                 },
                 {
-                  name: "policyOutput.laborSupplyImpact.byDecile.absolute",
-                  label: "Absolute",
+                  name: "policyOutput.laborSupplyImpact.earnings.byDecile",
+                  label: "By decile",
                   children: [
                     {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.total",
-                      label: "Total",
+                      name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative",
+                      label: "Relative",
+                      children: [
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.total",
+                          label: "Total",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.income",
+                          label: "Income effect",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.substitution",
+                          label: "Substitution effect",
+                        },
+                      ],
                     },
                     {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.income",
-                      label: "Income effect",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.substitution",
-                      label: "Substitution effect",
+                      name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute",
+                      label: "Absolute",
+                      children: [
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.total",
+                          label: "Total",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.income",
+                          label: "Income effect",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.substitution",
+                          label: "Substitution effect",
+                        },
+                      ],
                     },
                   ],
                 },
